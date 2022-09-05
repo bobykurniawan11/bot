@@ -14,6 +14,7 @@ import nodemailer from "nodemailer";
 import axios from "axios";
 const https = require(`https`);
 const fs = require(`fs`);
+const http = require('http');
 
 // import transporter from "./email";
 
@@ -117,17 +118,26 @@ app.use(express.urlencoded({
 }))
 
 
-
 const options = {
   key: fs.readFileSync(process.env.KEY_PATH?.toString()),
-  cert: fs.readFileSync(process.env.CERT_PATH?.toString())
+  cert: fs.readFileSync(process.env.CERT_PATH?.toString)
 };
 
-https.createServer(options, (req:any, res:any) => {
-  res.writeHead(200);
-  res.end(`hello world\n`);
-}).listen(8888);
+// https.createServer(options, (req:any, res:any) => {
+//   res.writeHead(200);
+//   res.end(`hello world\n`);
+// }).listen(8888);
 
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(options, app);
+
+httpServer.listen(80, () => {
+    console.log('HTTP Server running on port 80');
+});
+
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
+});
 
 
 
@@ -142,7 +152,7 @@ const TOKEN = process.env.LINE_ACCESS_TOKEN
 
 app.post("/send-telegram-message" , function(req,res) {
     var axios = require('axios');
-    var data = req.body
+    var data = JSON.stringify(req.body);
     
     var config = {
       method: 'post',
@@ -156,10 +166,10 @@ app.post("/send-telegram-message" , function(req,res) {
     
     axios(config)
     .then(function (response:any) {
-      console.log(JSON.stringify(response.data));
+     res.send(data)
     })
     .catch(function (error:any) {
-      console.log(error);
+      res.send(data)
     });
     
 })
