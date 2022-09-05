@@ -140,8 +140,28 @@ const TOKEN = process.env.LINE_ACCESS_TOKEN
 //
 
 
-app.post("/broadcast-blog" , function(req,res) {
-
+app.post("/send-telegram-message" , function(req,res) {
+    var axios = require('axios');
+    var data = req.body
+    
+    var config = {
+      method: 'post',
+      url: `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,
+      headers: { 
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response:any) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error:any) {
+      console.log(error);
+    });
+    
 })
 
 
