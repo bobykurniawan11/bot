@@ -119,20 +119,9 @@ app.use(express.urlencoded({
 
 
 const options = {
-  key: fs.readFileSync(process.env.KEY_PATH?.toString()),
-  cert: fs.readFileSync(process.env.CERT_PATH?.toString)
+  key: fs.readFileSync(process.env.KEY_PATH),
+  cert: fs.readFileSync(process.env.CERT_PATH)
 };
-
-// https.createServer(options, (req:any, res:any) => {
-//   res.writeHead(200);
-//   res.end(`hello world\n`);
-// }).listen(8888);
-
-
-
-// app.listen(port, () => {
-//   console.log(`Example app listening at http://localhost:${port}`)
-// })
 
 const TOKEN = process.env.LINE_ACCESS_TOKEN
 
@@ -306,6 +295,7 @@ app.get("/send-message", function (req,res){
 
 
 })
+
 
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(options, app);
