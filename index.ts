@@ -300,7 +300,7 @@ app.get("/send-message", function (req,res){
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(options, app);
 
-httpServer.listen(80, () => {
+httpServer.listen(8888, () => {
     console.log('HTTP Server running on port 80');
 });
 
