@@ -301,10 +301,10 @@ const httpServer = http.createServer(app);
 const httpsServer = https.createServer(options, app);
 
 httpServer.listen(8888, () => {
-    console.log('HTTP Server running on port 80');
+    console.log('HTTP Server running on port 8888');
 });
 
-httpsServer.listen(443, () => {
-    console.log('HTTPS Server running on port 443');
+httpsServer.listen(8889, () => {
+    console.log('HTTPS Server running on port 8889');
 });
 
