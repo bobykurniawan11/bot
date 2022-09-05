@@ -105,6 +105,10 @@ bot.command("start", async (ctx) => {
   await ctx.conversation.enter("greeting");
 });
 
+bot.on("message", async (ctx) => {
+if(ctx.update.message.text == "MY ID")  await ctx.reply(ctx.update.message.from.id.toString());
+});
+
 bot.start();
 //
 app.use(express.json())
@@ -115,8 +119,8 @@ app.use(express.urlencoded({
 
 
 const options = {
-  key: fs.readFileSync(process.env.KEY_PATH),
-  cert: fs.readFileSync(process.env.CERT_PATH)
+  // key: fs.readFileSync(process.env.KEY_PATH),
+  // cert: fs.readFileSync(process.env.CERT_PATH)
 };
 
 https.createServer(options, (req:any, res:any) => {
@@ -134,6 +138,13 @@ https.createServer(options, (req:any, res:any) => {
 const TOKEN = process.env.LINE_ACCESS_TOKEN
 
 //
+
+
+app.post("/broadcast-blog" , function(req,res) {
+
+})
+
+
 
 app.post("/webhook", function (req, res) {
   res.send("HTTP POST request sent to the webhook URL!")
