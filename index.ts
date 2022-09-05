@@ -119,8 +119,8 @@ app.use(express.urlencoded({
 
 
 const options = {
-  key: fs.readFileSync(process.env.KEY_PATH),
-  cert: fs.readFileSync(process.env.CERT_PATH)
+  key: fs.readFileSync(process.env.KEY_PATH?.toString()),
+  cert: fs.readFileSync(process.env.CERT_PATH?.toString())
 };
 
 https.createServer(options, (req:any, res:any) => {
