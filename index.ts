@@ -126,6 +126,29 @@ const options = {
 const TOKEN = process.env.LINE_ACCESS_TOKEN
 
 //
+app.post("/send-telegram-photo" , function(req,res) {
+  var axios = require('axios');
+  var data = JSON.stringify(req.body);
+  
+  var config = {
+    method: 'post',
+    url: `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendPhoto`,
+    headers: { 
+      'Accept': 'application/json', 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  
+  axios(config)
+  .then(function (response:any) {
+   res.send(data)
+  })
+  .catch(function (error:any) {
+    res.send(data)
+  });
+  
+})
 
 
 app.post("/send-telegram-message" , function(req,res) {
