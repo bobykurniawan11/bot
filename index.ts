@@ -128,17 +128,6 @@ const options = {
 //   res.end(`hello world\n`);
 // }).listen(8888);
 
-const httpServer = http.createServer(app);
-const httpsServer = https.createServer(options, app);
-
-httpServer.listen(80, () => {
-    console.log('HTTP Server running on port 80');
-});
-
-httpsServer.listen(443, () => {
-    console.log('HTTPS Server running on port 443');
-});
-
 
 
 // app.listen(port, () => {
@@ -317,3 +306,15 @@ app.get("/send-message", function (req,res){
 
 
 })
+
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(options, app);
+
+httpServer.listen(80, () => {
+    console.log('HTTP Server running on port 80');
+});
+
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
+});
+
