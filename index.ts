@@ -107,6 +107,10 @@ bot.command("start", async (ctx) => {
 });
 
 bot.on("message", async (ctx) => {
+
+console.log(ctx.update)
+
+
 if(ctx.update.message.text == "MY ID")  await ctx.reply(ctx.update.message.from.id.toString());
 });
 
